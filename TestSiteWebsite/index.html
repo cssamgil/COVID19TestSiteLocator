@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>FAU Covid-19 Testing Locations</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/navbar-logo.png" />
+        <script
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5JB2lBucWC_FF6A5kW75XWFjIL1yrnVA"
+              defer
+            ></script>
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top" onload="initialize()">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="assets/img/navbar-logo.png" alt="" /></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ml-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#map">Map</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#list">Location Listing</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#info">Covid, Vaccine, and CDC Information</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">about us</a></li>
+                        <li class = "login"><button class="btn btn-info" id="login">Log In</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <!-- <div class="masthead-heading text-uppercase">fau covid testing site locator</div> -->
+            </div>
+        </header>
+
+        <!-- Map-->
+        <section class="page-section" id="map">
+            <div class="container">
+                <div class="text-center">
+                  <div>
+                  <input type="text" placeholder="Search address, city, or ZIP code" id="address" size="70 contain">
+                  <button type="submit" id="submit">Search</button>
+                  </div>
+                  <br>
+                  <div class="mapcontainer" size="contain"></div>
+                    <div class="embed-responsive embed-responsive-16by9" id="mapview""></div>
+                  </div>
+                </div>
+
+                <!-- Chat goes besides the map, if on mobile it should
+                be an icon that bring up a pop up -->
+            </div>
+        </section>
+
+        <!-- List-->
+        <section class="page-section bg-light" id="list">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Location Listing</h2>
+                </div>
+                <div id = "location-list">
+                    <!-- Location Listings -->
+                </div>
+            </div>
+        </section>
+
+        <!-- General Covid Info (Backup)-->
+        <section class="page-section" id="info">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Covid, vaccine, and CDC Information</h2>
+                    <h3 class="section-subheading text-muted">Vital pandemic related information.</h3>
+                </div>
+
+                <div id="accordion">
+                  <div class="card">
+                    <div class="card-header" id="Covid">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Covid-19 Virus Information
+                        </button>
+                      </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                      <div class="card-body">
+                        <ul>
+                          <li>
+                            <h3>What is the coronavirus?</h3>
+                              <p>Coronaviruses are an extremely common cause of colds and other upper respiratory infections. SARS-CoV-2, short for severe acute respiratory syndrome coronavirus 2, is the official name for the coronavirus responsible for COVID-19.</p>
+                            </li>
+                          <li>
+                            <h3>What are the symptoms?</h3>
+                              <p>People with COVID-19 have had a wide range of symptoms reported – ranging from mild symptoms to severe illness. Symptoms may appear 2-14 days after exposure to the virus. People with these symptoms may have COVID-19:</p>
+                              <ul>
+                                    <li>Fever or chills</li>
+                                    <li>Cough</li>
+                                    <li>Shortness of breath or difficulty breathing</li>
+                                    <li>Fatigue</li>
+                                    <li>Muscle or body aches</li>
+                                    <li>Headache</li>
+                                    <li>New loss of taste or smell</li>
+                                    <li>Sore throat</li>
+                                    <li>Congestion or runny nose</li>
+                                    <li>Nausea or vomiting</li>
+                                    <li>Diarrhea</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <li>
+                                <h3>How does Covid-19 spread?</h3>
+                                <p>The coronavirus is thought to spread mainly from person to person. This can happen between people who are in close contact with one another. Droplets that are produced when an infected person coughs or sneezes may land in the mouths or noses of people who are nearby, or possibly be inhaled into their lungs.<br><br>
+
+                                A person infected with coronavirus — even one with no symptoms — may emit aerosols when they talk or breathe. Aerosols are infectious viral particles that can float or drift around in the air for up to three hours. Another person can breathe in these aerosols and become infected with the coronavirus. This is why everyone should wear a mask that covers their nose and mouth when they go out in public.<br><br>
+
+                                Coronavirus can also spread from contact with infected surfaces or objects, though this is less common. For example, a person can get COVID-19 by touching a surface or object that has the virus on it and then touching their own mouth, nose, or possibly their eyes.</p>
+                            </li>
+                        </ul>
+                        <br>
+                        <p>For more information, please consult the Official CDC website.</p>
+                        <p>Sources:<br>
+                            <a href="https://www.health.harvard.edu/diseases-and-conditions/covid-19-basics" target="_blank">Harvard Health Publishing COVID-19 Basics</a><br>
+                            <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html" target="_blank">CDC Centers for Disease Control and Prevention Covid-19 Symptoms</a>
+                          </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Covid-19 Vaccine Information
+                        </button>
+                      </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                      <div class="card-body">
+                        <ul>
+                            <!-- Pfizer -->
+                            <li>
+                              <h3>Pfizer - BioNTech</h3>
+                              <div class="col-md-12">
+                                <p><strong>Name: </strong>BNT162b2</p>
+                                <p><strong>Manufacturer:</strong> Pfizer, Inc., and BioNTech</p>
+                                <p><strong>Type of vaccine:</strong> mRNA</p>
+                                <p><strong>Number of shots:</strong> 2 shots, 21 days apart</p>
+                                <p><strong>How given:</strong> Shot in the muscle of the upper arm</p>
+                                <p><strong>Does not contain:</strong></p>
+                                <ul>
+                                <li>Eggs</li>
+                                <li>Preservatives</li>
+                                <li>Latex</li>
+                                </ul>
+                                <div class="card bb-1 bb-secondary border-0 rounded-0 mb-3"></div><div class="row-fluid">
+                                    <div class="vc_empty_space col-12 pt-3 pb-3"><span class="vc_empty_space_inner"></span></div>
+                                </div>
+                                </div>
+                                <h4>Side Effects</h4>
+                                  <table class="table nein-scroll table-bordered">
+                                    <thead>
+                                    <tr>
+                                    <th scope="col">In the arm where you got the shot:</th>
+                                    <th scope="col">Throughout the rest of your body:</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    <td>
+                                    <ul class="false">
+                                    <li>Pain</li>
+                                    <li>Redness</li>
+                                    <li>Swelling</li>
+                                    </ul>
+                                    </td>
+                                    <td>
+                                    <ul class="false">
+                                    <li>Tiredness</li>
+                                    <li>Headache</li>
+                                    <li>Muscle pain</li>
+                                    <li>Chills</li>
+                                    <li>Fever</li>
+                                    <li>Nausea</li>
+                                    </ul>
+                                    </td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                            </li>
+                            <br>
+                            <!-- Moderna -->
+                            <li>
+                                <h3>Moderna</h3>
+                                    <div class="col-md-12 splash-col">
+                                        <p><strong>Name: </strong>mRNA-1273</p>
+                                        <p><strong>Manufacturer:</strong> ModernaTX, Inc.</p>
+                                        <p><strong>Type of vaccine:</strong> mRNA</p>
+
+                                        <p><strong>Number of shots:</strong> 2 shots, one month (28 days) apart</p>
+                                        <p><strong>How given:</strong> Shot in the muscle of the upper arm</p>
+                                        <p><strong>Does not contain:</strong></p>
+                                        <ul>
+                                        <li>Eggs</li>
+                                        <li>Preservatives</li>
+                                        <li>Latex</li>
+                                        </ul>
+                                        </div>
+                                <h4>Side Effects</h4>
+                                  <table class="table nein-scroll table-bordered">
+                                    <thead>
+                                    <tr>
+                                    <th scope="col">In the arm where you got the shot:</th>
+                                    <th scope="col">Throughout the rest of your body:</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    <td>
+                                    <ul class="false">
+                                    <li>Pain</li>
+                                    <li>Redness</li>
+                                    <li>Swelling</li>
+                                    </ul>
+                                    </td>
+                                    <td>
+                                    <ul class="false">
+                                    <li>Tiredness</li>
+                                    <li>Headache</li>
+                                    <li>Muscle pain</li>
+                                    <li>Chills</li>
+                                    <li>Fever</li>
+                                    <li>Nausea</li>
+                                    </ul>
+                                    </td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                            </li>
+                            <br>
+                            <!-- Johnson & Johnson -->
+                            <li>
+                                <h3>Johnson & Johnson</h3>
+                                <div class="col-md-12 splash-col">
+                                <p><strong>Name: </strong>JNJ-78436735</p>
+                                <p><strong>Manufacturer:</strong> Janssen Pharmaceuticals Companies of Johnson &amp; Johnson</p>
+                                <p><strong>Type of vaccine:</strong> Viral vector</p>
+                                <p><strong>Number of shots:</strong> 1 shot</p>
+                                <p><strong>How given:</strong> Shot in the muscle of the upper arm</p>
+                                <p><strong>Does not contain:</strong></p>
+                                <ul>
+                                <li>Eggs</li>
+                                <li>Preservatives</li>
+                                <li>Latex</li>
+                                </ul>
+                                </div>
+                                <h4>Side Effects</h4>
+                                  <table class="table nein-scroll table-bordered">
+                                    <thead>
+                                    <tr>
+                                    <th scope="col">In the arm where you got the shot:</th>
+                                    <th scope="col">Throughout the rest of your body:</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    <td>
+                                    <ul class="false">
+                                    <li>Pain</li>
+                                    <li>Redness</li>
+                                    <li>Swelling</li>
+                                    </ul>
+                                    </td>
+                                    <td>
+                                    <ul class="false">
+                                    <li>Tiredness</li>
+                                    <li>Headache</li>
+                                    <li>Muscle pain</li>
+                                    <li>Chills</li>
+                                    <li>Fever</li>
+                                    <li>Nausea</li>
+                                    </ul>
+                                    </td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                            </li>
+                            <br>
+                          </ul>
+                        <p>Sources:<br>
+                            <a href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines.html" target="_blank">CDC Centers for Disease Control and Prevention Different Vaccines</a>
+                          </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingThree">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          CDC Information, Guidelines, and Documents
+                        </button>
+                      </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                      <div class="card-body">
+                        <a href="https://www.cdc.gov/" target="_blank">Official CDC Website</a>
+                        <div>
+                          <br>For regular updates on the global and national status of Covid-19, check in regularly to the official CDC website.<br><br>
+                        </div>
+                        <a href="https://www.cdc.gov/coronavirus/2019-ncov/community/guidance-business-response.html" target="_blank">Guidance for Businesses & Employers</a><br>
+                        <a href="https://www.cdc.gov/coronavirus/2019-ncov/community/large-events/considerations-for-events-gatherings.html" target="_blank">Events & Gatherings</a><br>
+                        <a href="https://www.cdc.gov/coronavirus/2019-ncov/vaccines/fully-vaccinated-guidance.html" target="_blank">Guidance for Fully Vaccinated People</a><br>
+                        <a href="https://www.cdc.gov/coronavirus/2019-ncov/php/mass-animal-care.html" target="_blank">Disaster Sheltering of Household Pets, Service Animals, & Support Animals</a><br>
+                        <a href="https://www.cdc.gov/coronavirus/2019-ncov/community/schools-childcare/operation-strategy.html" target="_blank">K-12 School Operational Strategy</a><br>
+                        <a href="https://www.cdc.gov/coronavirus/2019-ncov/community/homeless-shelters/unsheltered-homelessness.html" target="_blank">Interim Guidance on People Experiencing Unsheltered Homelessness</a><br>
+                          <!-- Idea, implement dynamic update of official CDC documents from https://www.cdc.gov/coronavirus/2019-ncov/communication/guidance-list.html?Sort=Date%3A%3Adesc-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </section>
+
+<!-- About us (team)-->
+        <section class="page-section bg-light" id="about">
+            <div class="container">
+                <div class="text-center">
+
+            <div class="container" style="padding-top: 2rem">
+            <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+            <br>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/aboutus/profileJo.png" alt="" />
+                            <h4>Jocelyn Hernandez</h4>
+                            <p class="text-muted">Role</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/aboutus/profileRyan.png" alt="" />
+                            <h4>Ryan Jbaili</h4>
+                            <p class="text-muted">Role</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/aboutus/profileCarlos.jpg" alt="" />
+                            <h4>Carlos Sanchez</h4>
+                            <p class="text-muted">Role</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/aboutus/profileAlex.jpg" alt="" />
+                            <h4>Alex Schwartz</h4>
+                            <p class="text-muted">Role</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/aboutus/profileLeo.jpg" alt="" />
+                            <h4>Leonardo Martinez</h4>
+                            <p class="text-muted">Role</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                      <h2 class="section-heading text-uppercase">Our Mission</h2>
+                      <p class="large text-muted">Since the start of the Covid-19 Pandemic, many have been rightfully anxious about how the pandemic will affect their lives.
+                        From working at home, less traveling, to increased social isolation, the pandemic has hurt everyone in different ways, and given the opportunity to make something
+                        useful to help people, we decided to make something for the people within the greater FAU/Boca Raton area.
+                        This project not not only lets us excercise our knowledge in Computer Science, but it allows us to make something practical to help others in these difficult times.
+                        To everyone dealing with these difficult times, stay safe and healthy.</p></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-left">CEN 4010 Spring 2021 Team 20</div>
+
+                    <div class="col-lg-4 text-lg-right">
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <!--<script src="assets/mail/jqBootstrapValidation.js"></script>-->
+        <!--<script src="assets/mail/contact_me.js"></script>-->
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="js/login.js"></script>
+        <script src="js/map.js"></script>
+        <!--Firebase JS-->
+        <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js"></script>
+        <script src="js/firebase_creds.js"></script>
+    </body>
+</html>
